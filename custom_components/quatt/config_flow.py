@@ -14,7 +14,7 @@ from homeassistant.config_entries import (
 from homeassistant.const import (
     CONF_HOST,
 )
-from homeassistant.core import HomeAssistant, callback
+from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
 
 from .api import SunPiApiClient, APIConnectionError, APITimeoutError
