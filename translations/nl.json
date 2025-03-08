@@ -1,36 +1,18 @@
 {
     "config": {
-      "title": "Integration 101 Template Integration",
+      "title": "SunPi Integratie",
       "abort": {
-        "already_configured": "Device is already configured",
-        "reconfigure_successful": "Reconfiguration successful"
+        "already_configured": "Apparaat is al geconfigureerd"
       },
       "error": {
-        "cannot_connect": "Failed to connect",
-        "invalid_auth": "Invalid authentication",
-        "unknown": "Unexpected error"
+        "cannot_connect": "Fout bij verbinden",
+        "unknown": "Unverwachtte fout"
       },
       "step": {
         "user": {
           "data": {
-            "host": "Host"
+            "host": "IP Adres"
           }
-        },
-        "reconfigure": {
-          "data": {
-            "host": "Host"
-          }
-        }
-      }
-    },
-    "options": {
-      "step": {
-        "init": {
-          "data": {
-            "scan_interval": "Scan Interval (seconds)"
-          },
-          "description": "Amend your options.",
-          "title": "Example Integration Options"
         }
       }
     }
