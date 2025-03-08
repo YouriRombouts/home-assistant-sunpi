@@ -11,7 +11,7 @@ class SunPiApiClient:
 
     def __init__(self, host: str, session: ClientSession) -> None:
         self.host = host
-        self._session = session
+        self.session = session
         self.connected: bool = False
 
     async def async_get_data(self) -> any:
@@ -32,7 +32,7 @@ class SunPiApiClient:
             try:
                 LOGGER.debug("Fetching data from url: %s (Attempt %d)", url, attempt + 1)
                 async with asyncio.timeout(20):
-                    response = await self._session.request(
+                    response = await self.session.request(
                         method=method,
                         url=url,
                         headers=headers,

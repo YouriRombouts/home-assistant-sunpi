@@ -16,6 +16,7 @@ from homeassistant.const import (
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
 from .api import SunPiApiClient, APIConnectionError, APITimeoutError
 from .const import DOMAIN
@@ -33,7 +34,7 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]:
     """Validate the user input allows us to connect."""
 
-    api = SunPiApiClient(data[CONF_HOST])
+    api = SunPiApiClient(data[CONF_HOST], async_create_clientsession(hass))
     try:
         await hass.async_add_executor_job(api.async_get_data)
         # If you cannot connect, raise CannotConnect
