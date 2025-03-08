@@ -2,12 +2,20 @@
 
 from __future__ import annotations
 
+import ipaddress
+
 import voluptuous as vol
 
-from homeassistant import config_entries
-from homeassistant.config_entries import ConfigFlow
-from homeassistant.const import CONF_IP_ADDRESS
+from homeassistant import config_entries, data_entry_flow
+from homeassistant.components import dhcp
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.config_entries import (
+    ConfigFlow,
+)
+from homeassistant.const import CONF_IP_ADDRESS, CONF_SCAN_INTERVAL
+from homeassistant.core import callback
 from homeassistant.helpers import selector
+from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
 from .api import (
     SunPiApiClient,
@@ -81,3 +89,16 @@ class SunPiFlowHandler(ConfigFlow, domain=DOMAIN):
             ),
             errors=_errors,
         )
+
+    async def async_step_confirm(
+        self, user_input=None
+    ) -> data_entry_flow.ConfigFlowResult:
+        """Allow the user to confirm adding the device."""
+        if user_input is not None:
+            # Use the hostname instead of the ip
+            return self.async_create_entry(
+                title="SunPi",
+                data={CONF_IP_ADDRESS: self.ip_address}
+            )
+
+        return self.async_show_form(step_id="confirm")
