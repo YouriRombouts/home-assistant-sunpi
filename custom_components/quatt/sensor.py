@@ -1,4 +1,4 @@
-"""Sensor platform for quatt."""
+"""Sensor platform for SunPi."""
 
 from __future__ import annotations
 

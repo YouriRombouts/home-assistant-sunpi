@@ -19,15 +19,13 @@ PLATFORMS: list[Platform] = [
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up this integration using UI."""
-    hass.data.setdefault(DOMAIN, {})
-    hass.data[DOMAIN][entry.entry_id] = coordinator = SunPiDataUpdateCoordinator(
+    coordinator = SunPiDataUpdateCoordinator(
         hass=hass,
         update_interval=entry.options.get(SCAN_INTERVAL),
         client=SunPiApiClient(entry.data[CONF_IP_ADDRESS]),
     )
     await coordinator.async_config_entry_first_refresh()
 
-    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     # On update of the options reload the entry which reloads the coordinator
     entry.async_on_unload(entry.add_update_listener(update_listener))
 

@@ -1,4 +1,4 @@
-"""QuattEntity class."""
+"""SunPiEntity class."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from .const import ATTRIBUTION, DOMAIN
 from .coordinator import SunPiDataUpdateCoordinator
 
 class SunPiSensorEntityDescription(SensorEntityDescription, frozen_or_thawed=True):
-    """A class that describes Quatt sensor entities."""
+    """A class that describes SunPi sensor entities."""
 
 class SunPiEntity(CoordinatorEntity):
     """SunPiEntity class."""

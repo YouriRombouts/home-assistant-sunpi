@@ -1,4 +1,4 @@
-"""Adds config flow for Quatt."""
+"""Adds config flow for SunPi."""
 
 from __future__ import annotations
 
