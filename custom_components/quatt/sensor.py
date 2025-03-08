@@ -80,7 +80,4 @@ class SunPiSensor(SunPiEntity, SensorEntity):
         """Return the native value of the sensor."""
         value = self.coordinator.getValue(self.entity_description.key)
 
-        if self.entity_description.device_class == SensorDeviceClass.TIMESTAMP:
-            value = dt_util.parse_datetime(value)
-
         return value

@@ -58,4 +58,4 @@ class SunPiDataUpdateCoordinator(DataUpdateCoordinator):
         elif key not in self.data:
             LOGGER.warning("Could not find key: %s", key)
             return default
-        return self.data[key]
+        return float(self.data[key])
