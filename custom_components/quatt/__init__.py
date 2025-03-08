@@ -7,6 +7,9 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers.aiohttp_client import (
+    async_get_clientsession,
+)
 
 from .api import SunPiApiClient
 from .const import SCAN_INTERVAL
@@ -26,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry[Runti
     coordinator = SunPiDataUpdateCoordinator(
         hass=hass,
         update_interval=config_entry.options.get(SCAN_INTERVAL),
-        client=SunPiApiClient(config_entry.data[CONF_HOST]),
+        client=SunPiApiClient(config_entry.data[CONF_HOST], async_get_clientsession(hass)),
     )
     await coordinator.async_config_entry_first_refresh()
 

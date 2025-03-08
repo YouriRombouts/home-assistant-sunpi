@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from aiohttp import ClientSession
 
 from .const import LOGGER
 
@@ -8,8 +9,9 @@ _RETRY_ATTEMPTS = 3
 class SunPiApiClient:
     """SunPi API Client."""
 
-    def __init__(self, host: str) -> None:
+    def __init__(self, host: str, session: ClientSession) -> None:
         self.host = host
+        self._session = session
         self.connected: bool = False
 
     async def async_get_data(self) -> any:
