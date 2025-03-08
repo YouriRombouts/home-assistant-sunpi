@@ -5,7 +5,7 @@ from __future__ import annotations
 from homeassistant.components.sensor import SensorEntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import ATTRIBUTION, DOMAIN
+from .const import DOMAIN
 from .coordinator import SunPiDataUpdateCoordinator
 
 class SunPiSensorEntityDescription(SensorEntityDescription, frozen_or_thawed=True):
@@ -14,7 +14,6 @@ class SunPiSensorEntityDescription(SensorEntityDescription, frozen_or_thawed=Tru
 class SunPiEntity(CoordinatorEntity):
     """SunPiEntity class."""
 
-    _attr_attribution = ATTRIBUTION
     _attr_has_entity_name = True
 
     def __init__(
