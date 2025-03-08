@@ -7,8 +7,9 @@ import logging
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
+    SensorStateClass,
 )
-from homeassistant.const import EntityCategory
+from homeassistant.const import EntityCategory, UnitOfTemperature
 import homeassistant.util.dt as dt_util
 
 from .const import DOMAIN
@@ -28,16 +29,28 @@ SENSORS = [
         name="Vat bottom temperature",
         key="bottom",
         icon="mdi:water-boiler",
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        suggested_display_precision=2,
+        state_class=SensorStateClass.MEASUREMENT,
     ),
     SunPiSensorEntityDescription(
         name="Vat middle temperature",
         key="middle",
         icon="mdi:water-boiler",
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        suggested_display_precision=2,
+        state_class=SensorStateClass.MEASUREMENT,
     ),
     SunPiSensorEntityDescription(
         name="Vat top temperature",
         key="top",
         icon="mdi:water-boiler",
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        suggested_display_precision=2,
+        state_class=SensorStateClass.MEASUREMENT,
     ),
 ]
 
