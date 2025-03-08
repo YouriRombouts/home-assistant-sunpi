@@ -43,9 +43,9 @@ SENSORS = [
 
 _LOGGER = logging.getLogger(__name__)
 
-async def async_setup_entry(hass, entry, async_add_devices):
+async def async_setup_entry(hass, config_entry, async_add_devices):
     """Set up the sensor platform."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator: SunPiDataUpdateCoordinator = config_entry.runtime_data.coordinator
 
     async_add_devices(
         SunPiSensor(
