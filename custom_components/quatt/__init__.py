@@ -4,10 +4,6 @@ from __future__ import annotations
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_IP_ADDRESS, Platform
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.aiohttp_client import (
-    async_create_clientsession,
-    async_get_clientsession,
-)
 
 from .api import (
     SunPiApiClient,
@@ -18,7 +14,6 @@ from .const import SCAN_INTERVAL, DOMAIN, LOGGER
 from .coordinator import SunPiDataUpdateCoordinator
 
 PLATFORMS: list[Platform] = [
-    Platform.BINARY_SENSOR,
     Platform.SENSOR,
 ]
 
@@ -28,7 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN][entry.entry_id] = coordinator = SunPiDataUpdateCoordinator(
         hass=hass,
         update_interval=entry.options.get(SCAN_INTERVAL),
-        client=SunPiApiClient(ip_address=entry.data[CONF_IP_ADDRESS]),
+        client=SunPiApiClient(entry.data[CONF_IP_ADDRESS]),
     )
     await coordinator.async_config_entry_first_refresh()
 
