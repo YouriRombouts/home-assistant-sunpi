@@ -11,7 +11,7 @@ from homeassistant.components.sensor import SensorDeviceClass
 import homeassistant.util.dt as dt_util
 
 from .api import SunPiApiClient, APIConnectionError, APITimeoutError
-from binary_sensor import SunPiBinarySensor
+from .binary_sensor import SunPiBinarySensor
 from .const import SCAN_INTERVAL, DOMAIN, LOGGER
 
 class SunPiDataUpdateCoordinator(DataUpdateCoordinator):

@@ -6,7 +6,6 @@ from homeassistant.components.binary_sensor import (
     BinarySensorEntityDescription,
 )
 
-from .const import DOMAIN
 from .coordinator import SunPiDataUpdateCoordinator
 from .entity import SunPiEntity, SunPiSensorEntityDescription
 

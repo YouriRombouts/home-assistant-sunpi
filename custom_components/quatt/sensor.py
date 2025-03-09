@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import logging
-
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
@@ -67,8 +65,6 @@ SENSORS = [
         state_class=SensorStateClass.MEASUREMENT,
     ),
 ]
-
-_LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass, config_entry, async_add_devices):
     """Set up the sensor platform."""

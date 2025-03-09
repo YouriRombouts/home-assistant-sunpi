@@ -1,6 +1,5 @@
 {
     "name": "SunPi",
-    "filename": "sunpi.zip",
     "hide_default_branch": true,
     "homeassistant": "2025.2.4",
     "render_readme": true,
