@@ -7,8 +7,11 @@ from datetime import timedelta
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from homeassistant.components.sensor import SensorDeviceClass
+import homeassistant.util.dt as dt_util
 
 from .api import SunPiApiClient, APIConnectionError, APITimeoutError
+from binary_sensor import SunPiBinarySensor
 from .const import SCAN_INTERVAL, DOMAIN, LOGGER
 
 class SunPiDataUpdateCoordinator(DataUpdateCoordinator):
@@ -58,4 +61,10 @@ class SunPiDataUpdateCoordinator(DataUpdateCoordinator):
         elif key not in self.data:
             LOGGER.warning("Could not find key: %s", key)
             return default
-        return float(self.data[key])
+
+        if self.entity_description.device_class == SensorDeviceClass.TIMESTAMP or self.entity_description.device_class == SensorDeviceClass.DATE:
+            return dt_util.parse_datetime(self.data[key])
+        elif self.entity_description.device_class == SensorDeviceClass.TEMPERATURE:
+            return float(self.data[key])
+        elif type(self) is SunPiBinarySensor:
+            return bool(self.data[key])

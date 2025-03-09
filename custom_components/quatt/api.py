@@ -16,7 +16,7 @@ class SunPiApiClient:
 
     async def async_get_data(self) -> any:
         """Get data from the API."""
-        return await self._api_wrapper(method="get", path="/boiler-temperatures")
+        return await self._api_wrapper(method="get", path="/status")
 
     async def _api_wrapper(
         self,

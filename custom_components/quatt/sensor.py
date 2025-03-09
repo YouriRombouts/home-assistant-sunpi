@@ -9,7 +9,7 @@ from homeassistant.components.sensor import (
     SensorEntity,
     SensorStateClass,
 )
-from homeassistant.const import EntityCategory, UnitOfTemperature
+from homeassistant.const import EntityCategory, UnitOfTemperature, UnitOfTime
 import homeassistant.util.dt as dt_util
 
 from .const import DOMAIN
@@ -28,7 +28,7 @@ SENSORS = [
     SunPiSensorEntityDescription(
         name="Vat bottom temperature",
         key="bottom",
-        icon="mdi:water-boiler",
+        icon="mdi:water-thermometer",
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
         suggested_display_precision=2,
@@ -37,7 +37,7 @@ SENSORS = [
     SunPiSensorEntityDescription(
         name="Vat middle temperature",
         key="middle",
-        icon="mdi:water-boiler",
+        icon="mdi:water-thermometer",
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
         suggested_display_precision=2,
@@ -46,10 +46,24 @@ SENSORS = [
     SunPiSensorEntityDescription(
         name="Vat top temperature",
         key="top",
-        icon="mdi:water-boiler",
+        icon="mdi:water-thermometer",
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
         suggested_display_precision=2,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SunPiSensorEntityDescription(
+        name="Vat last disinfected",
+        key="lastDisinfected",
+        icon="mdi:history",
+        device_class=SensorDeviceClass.DATE,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SunPiSensorEntityDescription(
+        name="Vat disinfecting since",
+        key="disinfectingSince",
+        icon="mdi:timer",
+        device_class=SensorDeviceClass.TIMESTAMP,
         state_class=SensorStateClass.MEASUREMENT,
     ),
 ]
