@@ -103,4 +103,7 @@ class SunPiSensor(SunPiEntity, SensorEntity):
         """Return the native value of the sensor."""
         value = self.coordinator.getValue(self.entity_description.key)
 
-        return value
+        if self.entity_description.device_class == SensorDeviceClass.TIMESTAMP or self.entity_description.device_class == SensorDeviceClass.DATE:
+            return dt_util.parse_datetime(value)
+
+        return float(value)

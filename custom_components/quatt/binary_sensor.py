@@ -57,4 +57,4 @@ class SunPiBinarySensor(SunPiEntity, BinarySensorEntity):
 
     @property
     def is_on(self) -> bool:
-        return self.coordinator.getValueBool(self.entity_description.key)
+        return bool(self.coordinator.getValue(self.entity_description.key))

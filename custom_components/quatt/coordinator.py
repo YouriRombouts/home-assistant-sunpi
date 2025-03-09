@@ -55,15 +55,20 @@ class SunPiDataUpdateCoordinator(DataUpdateCoordinator):
         LOGGER.debug(self.getValue("top"))
         return self.getValue("top")
 
+    def disinfecting(self):
+        """Get disinfecting status."""
+        LOGGER.debug(self.getValue("disinfecting"))
+        return self.getValue("disinfecting")
+
+    def relayStatus(self):
+        """Get relay status."""
+        LOGGER.debug(self.getValue("relayStatus"))
+        return self.getValue("relayStatus")
+
     def getValue(self, key: str, default: float | None = None):
         if key is None: return default
         elif key not in self.data:
             LOGGER.warning("Could not find key: %s", key)
             return default
 
-        if self.entity_description.device_class == SensorDeviceClass.TIMESTAMP or self.entity_description.device_class == SensorDeviceClass.DATE:
-            return dt_util.parse_datetime(self.data[key])
-        elif self.entity_description.device_class == SensorDeviceClass.TEMPERATURE:
-            return float(self.data[key])
-        else:
-            return bool(self.data[key])
+        return self.data[key]
