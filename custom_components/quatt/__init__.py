@@ -16,6 +16,7 @@ from .const import SCAN_INTERVAL
 from .coordinator import SunPiDataUpdateCoordinator
 
 PLATFORMS: list[Platform] = [
+    Platform.BINARY_SENSOR,
     Platform.SENSOR,
 ]
 

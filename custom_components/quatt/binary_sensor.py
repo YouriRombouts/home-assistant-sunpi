@@ -1,7 +1,5 @@
-"""Binary sensor platform for quatt."""
+"""Binary sensor platform for SunPi."""
 from __future__ import annotations
-
-import logging
 
 from homeassistant.components.binary_sensor import (
     BinarySensorEntity,
