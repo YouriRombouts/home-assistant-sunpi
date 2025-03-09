@@ -11,7 +11,6 @@ from homeassistant.components.sensor import SensorDeviceClass
 import homeassistant.util.dt as dt_util
 
 from .api import SunPiApiClient, APIConnectionError, APITimeoutError
-from .binary_sensor import SunPiBinarySensor
 from .const import SCAN_INTERVAL, DOMAIN, LOGGER
 
 class SunPiDataUpdateCoordinator(DataUpdateCoordinator):
@@ -66,5 +65,5 @@ class SunPiDataUpdateCoordinator(DataUpdateCoordinator):
             return dt_util.parse_datetime(self.data[key])
         elif self.entity_description.device_class == SensorDeviceClass.TEMPERATURE:
             return float(self.data[key])
-        elif type(self) is SunPiBinarySensor:
+        else:
             return bool(self.data[key])
